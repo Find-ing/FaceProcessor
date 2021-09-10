@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:mysql://rm-2vc40ra5724w7e66weo.mysql.cn-chengdu.rds.aliyuncs.com:3306/FaceProcessor
+    username: faceprocessor
+    password: Face_Processor
+    driver-class-name: com.mysql.cj.jdbc.Driver
