@@ -23,26 +23,26 @@ public interface UserInfoDAO {
 
    /**
     * 删除用户
-    * @param userName 要删除用户的用户名
+    * @param username 要删除用户的用户名
     * @return 返回执行结果
     */
-   ReturnInfo delUser(String userName);
+   ReturnInfo delUser(String username);
 
     /**
      * 增加面部数据
-     * @param userName 要增加面部数据的用户
+     * @param username 要增加面部数据的用户
      * @param faceInfo 面部数据
      * @return 返回执行结果
      */
-   ReturnInfo addFaceInfo(String userName, byte[] faceInfo);
+   ReturnInfo addFaceInfo(String username, byte[] faceInfo);
 
     /**
      * 账号密码登录
-     * @param userName 要登陆的用户名
+     * @param username 要登陆的用户名
      * @param password 该用户名对应的密码
      * @return 返回执行结果
      */
-   ReturnInfo hasResigned(String userName, String password);
+   ReturnInfo hasResigned(String username, String password);
 
     /**
      * 面部登录

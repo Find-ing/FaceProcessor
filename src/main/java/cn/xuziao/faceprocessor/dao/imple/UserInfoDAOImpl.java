@@ -31,9 +31,9 @@ public class UserInfoDAOImpl implements UserInfoDAO {
     @Override
     public ReturnInfo addUser(UserInfo userInfo) {
 
-        String sql = "insert into baseInfo(userName, password, email) VALUES (?, ?, ?)";
+        String sql = "insert into baseInfo(username, password, email) VALUES (?, ?, ?)";
         Object[] objects = new Object[]{
-                userInfo.getUserName(),
+                userInfo.getUsername(),
                 userInfo.getPassword(),
                 userInfo.getEmail()
         };
@@ -50,12 +50,12 @@ public class UserInfoDAOImpl implements UserInfoDAO {
     @Override
     public ReturnInfo alertUser(UserInfo userInfo) {
 
-        String sql = "update baseInfo set password=?, email=? where userName=?";
+        String sql = "update baseInfo set password=?, email=? where username=?";
 
         Object[] objects = new Object[]{
                 userInfo.getPassword(),
                 userInfo.getEmail(),
-                userInfo.getUserName()
+                userInfo.getUsername()
         };
         try {
             jdbcTemplate.update(sql, objects);
@@ -67,10 +67,10 @@ public class UserInfoDAOImpl implements UserInfoDAO {
     }
 
     @Override
-    public ReturnInfo delUser(String userName) {
-        String sql = "delete from baseInfo where userName = ?";
+    public ReturnInfo delUser(String username) {
+        String sql = "delete from baseInfo where username = ?";
         try {
-            jdbcTemplate.update(sql, userName);
+            jdbcTemplate.update(sql, username);
         } catch (Exception e){
             e.printStackTrace();
             return ReturnInfo.OTHERS;
@@ -80,11 +80,11 @@ public class UserInfoDAOImpl implements UserInfoDAO {
     }
 
     @Override
-    public ReturnInfo addFaceInfo(String userName, byte[] faceInfo) {
-        String sql = "update baseInfo set faceInfo=? where userName=?";
+    public ReturnInfo addFaceInfo(String username, byte[] faceInfo) {
+        String sql = "update baseInfo set faceInfo=? where username=?";
 
         try {
-            jdbcTemplate.update(sql, faceInfo, userName);
+            jdbcTemplate.update(sql, faceInfo, username);
         } catch (Exception e){
             e.printStackTrace();
             return ReturnInfo.OTHERS;
@@ -94,13 +94,13 @@ public class UserInfoDAOImpl implements UserInfoDAO {
     }
 
     @Override
-    public ReturnInfo hasResigned(String userName, String password) {
+    public ReturnInfo hasResigned(String username, String password) {
 
         String passwordInDatabase;
-        String sql = "select password from baseinfo where userName=?";
+        String sql = "select password from baseinfo where username=?";
 
         try {
-            passwordInDatabase = jdbcTemplate.queryForObject(sql, String.class, userName);
+            passwordInDatabase = jdbcTemplate.queryForObject(sql, String.class, username);
         } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
             return ReturnInfo.USER_NOT_FOUND;
         } catch (Exception e) {

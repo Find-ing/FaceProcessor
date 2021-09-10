@@ -1,5 +1,6 @@
 package cn.xuziao.faceprocessor;
 
+import cn.xuziao.faceprocessor.dao.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,5 +20,15 @@ public class MainController {
         log.info("日志打印");
         return "Test Success!";
     }
+
+    @RequestMapping(
+            value = "/resign",
+            params = {"username", "password", "email"}
+    )
+    public String resign(UserInfo user) {
+         log.info(String.valueOf(user));
+        return "success";
+    }
+
 
 }
