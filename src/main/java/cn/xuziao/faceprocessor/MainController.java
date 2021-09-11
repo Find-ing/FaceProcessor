@@ -1,7 +1,9 @@
 package cn.xuziao.faceprocessor;
 
 import cn.xuziao.faceprocessor.dao.UserInfo;
+import cn.xuziao.faceprocessor.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class MainController {
+
+    private final UserInfoService userInfoService;
+
+    @Autowired
+    public MainController(UserInfoService userInfoService) {
+        this.userInfoService = userInfoService;
+    }
+
     @RequestMapping("/test")
     public String testAction () {
         log.info("日志打印");
@@ -25,9 +35,16 @@ public class MainController {
             value = "/resign",
             params = {"username", "password", "email"}
     )
-    public String resign(UserInfo user) {
-         log.info(String.valueOf(user));
-        return "success";
+    public String resign(UserInfo userInfo) {
+        return userInfoService.resignService(userInfo);
+    }
+
+    @RequestMapping(
+            value = "/login",
+            params = {"username", "password"}
+    )
+    public String login(String username, String password) {
+        return userInfoService.loginService(username, password);
     }
 
 
