@@ -1,7 +1,6 @@
 package cn.xuziao.faceprocessor.tools;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

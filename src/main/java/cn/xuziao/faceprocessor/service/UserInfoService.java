@@ -3,11 +3,8 @@ package cn.xuziao.faceprocessor.service;
 import cn.xuziao.faceprocessor.dao.ReturnInfo;
 import cn.xuziao.faceprocessor.dao.UserInfo;
 import cn.xuziao.faceprocessor.dao.imple.UserInfoDAOImpl;
-import cn.xuziao.faceprocessor.email.SendIdentifyingCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Random;
 
 /**
  * @author xuziao
