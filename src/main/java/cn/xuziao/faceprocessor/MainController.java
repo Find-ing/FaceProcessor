@@ -3,6 +3,7 @@ package cn.xuziao.faceprocessor;
 import cn.xuziao.faceprocessor.dao.UserInfo;
 import cn.xuziao.faceprocessor.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,6 @@ public class MainController {
 
     @RequestMapping("/test")
     public String testAction () {
-        log.info("日志打印");
         return "Test Success!";
     }
 

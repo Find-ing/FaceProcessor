@@ -4,6 +4,7 @@ import cn.xuziao.faceprocessor.dao.ReturnInfo;
 import cn.xuziao.faceprocessor.dao.UserInfo;
 import cn.xuziao.faceprocessor.dao.UserInfoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -39,7 +40,10 @@ public class UserInfoDAOImpl implements UserInfoDAO {
         };
         try {
             jdbcTemplate.update(sql, objects);
-        } catch (Exception e){
+        } catch (DuplicateKeyException duplicateKeyException) {
+            return ReturnInfo.USER_IS_EXISTED;
+        }
+        catch (Exception e){
             e.printStackTrace();
             return ReturnInfo.OTHERS;
         }

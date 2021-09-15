@@ -41,7 +41,8 @@ class FaceProcessorApplicationTests {
         log.info("SHA-1加密1234后的密文:{}", passwordEncryption.sha1Encryption("1234"));
         //returnInfo = userInfoDAO.delUser("test1Usernamm");
 //        log.info("删除用户的执行状态：{}", returnInfo.getStatus());
-        returnInfo = userInfoDAO.hasResigned("test2Usernamm", passwordEncryption.md5Encryption("12434"));
+//        returnInfo = userInfoDAO.hasResigned("test2Usernamm", passwordEncryption.md5Encryption("12434"));
+        returnInfo = userInfoDAO.addUser(new UserInfo("lsr", "123", "123"));
         log.info("用户登录信息测试：{}", returnInfo.getStatus());
     }
 
