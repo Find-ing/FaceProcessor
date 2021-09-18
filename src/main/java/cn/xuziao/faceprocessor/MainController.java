@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,20 +32,19 @@ public class MainController {
         return "Test Success!";
     }
 
-    @RequestMapping(
-            value = "/resign",
-            params = {"username", "password", "email"}
-    )
+    @RequestMapping(value = "/resign/{username}/{password}/{email}")
     public String resign(UserInfo userInfo) {
         return userInfoService.resignService(userInfo);
     }
 
-    @RequestMapping(
-            value = "/login",
-            params = {"username", "password"}
-    )
-    public String login(String username, String password) {
+    @RequestMapping(value = "/login/{username}/{password}")
+    public String login(@PathVariable String password, @PathVariable String username) {
         return userInfoService.loginService(username, password);
+    }
+
+    @RequestMapping(value = "sendCode/{email}/{code}")
+    public String sendCode(@PathVariable String code, @PathVariable String email){
+        return userInfoService.sendCodeService(code, email);
     }
 
 
