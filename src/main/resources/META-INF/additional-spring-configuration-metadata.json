@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.ssl.key-store",
+      "type": "java.lang.String",
+      "description": "Description for spring.ssl.key-store."
+  }
+] }

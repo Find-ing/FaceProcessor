@@ -4,3 +4,14 @@ spring:
     username: faceprocessor
     password: Face_Processor
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+server:
+  port: 8081
+  ssl:
+    key-store: classpath:6313903_www.xuziao.cn.pfx
+    key-store-password: cUI5A59E
+    key-store-type: PKCS12
+
+
+
