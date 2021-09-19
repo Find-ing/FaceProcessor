@@ -36,7 +36,7 @@ public class UserInfoService {
     public String sendCodeService(String code, String email) {
         try {
             new SendIdentifyingCode(email, code);
-            return String.valueOf(ReturnInfo.OK);
+            return String.valueOf(ReturnInfo.OK.getCode());
         } catch (Exception e) {
             log.error(e.getMessage());
             return String.valueOf(ReturnInfo.OTHERS.getCode());
