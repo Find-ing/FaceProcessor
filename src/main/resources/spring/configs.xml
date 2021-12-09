@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd   http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <context:component-scan base-package="cn"/>
+
+
+    <bean id="faceEngine" class="com.arcsoft.face.FaceEngine"/>
+    <bean id="engineConfiguration" class="com.arcsoft.face.EngineConfiguration">
+        <property name="detectFaceMaxNum" value="10"/>
+
+        <property name="detectFaceOrientPriority" value="ASF_OP_90_ONLY"/>
+        <property name="detectFaceScaleVal" value="16"/>
+        <property name="detectMode" value="ASF_DETECT_MODE_IMAGE"/>
+        <property name="functionConfiguration" ref="functionConfiguration"/>
+    </bean>
+    <bean id="functionConfiguration" class="com.arcsoft.face.FunctionConfiguration">
+        <property name="supportLiveness" value="true"/>
+        <property name="supportFace3dAngle" value="true"/>
+        <property name="supportFaceDetect" value="true"/>
+        <property name="supportGender" value="true"/>
+        <property name="supportAge" value="true"/>
+        <property name="supportFaceRecognition" value="true"/>
+        <property name="supportIRLiveness" value="false"/>
+    </bean>
+    <bean id="configuration" class="com.arcsoft.face.FunctionConfiguration">
+        <property name="supportAge" value="true"/>
+        <property name="supportGender" value="true"/>
+        <property name="supportFace3dAngle" value="true"/>
+        <property name="supportLiveness" value="true"/>
+    </bean>
+
+</beans>

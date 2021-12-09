@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class UserInfoService {
-    private UserInfoDAOImpl userInfoDAOImpl;
+    private final UserInfoDAOImpl userInfoDAOImpl;
 
     @Autowired
     public UserInfoService(UserInfoDAOImpl userInfoDAOImpl) {

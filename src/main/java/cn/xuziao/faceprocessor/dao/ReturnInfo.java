@@ -14,7 +14,9 @@ public enum ReturnInfo {
     FACE_INFO_NOT_FOUND(3, "找不到面部信息"),
     FACE_CAN_NOT_IDENTIFY(4 ,"检测不到面部信息"),
     USER_IS_EXISTED(5 ,"该用户名已经存在"),
-    OTHERS(6, "出现未知错误，请联系管理员解决");
+    IMAGE_FACE_NOT_EXIT(6, "图片中不含有面部信息，请重新识别"),
+    TOO_MANY_FACES(7, "出现太多面部信息，请保证摄像头区域内只有一张人脸"),
+    OTHERS(8, "出现未知错误，请联系管理员解决");
 
 
     private final int code;

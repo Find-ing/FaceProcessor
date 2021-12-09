@@ -3,6 +3,9 @@ package cn.xuziao.faceprocessor.dao.imple;
 import cn.xuziao.faceprocessor.dao.ReturnInfo;
 import cn.xuziao.faceprocessor.dao.UserInfo;
 import cn.xuziao.faceprocessor.dao.UserInfoDAO;
+import cn.xuziao.faceprocessor.face.ImageHandler;
+import com.arcsoft.face.FaceInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -17,15 +20,17 @@ import java.util.List;
  * @author xuziao
  * @date 2021/9/10 12:51
  */
-
+@Slf4j
 @Repository
 public class UserInfoDAOImpl implements UserInfoDAO {
 
     private final JdbcTemplate jdbcTemplate;
+    private final ImageHandler imageHandler;
 
     @Autowired
-    public UserInfoDAOImpl(JdbcTemplate jdbcTemplate) {
+    public UserInfoDAOImpl(JdbcTemplate jdbcTemplate, ImageHandler imageHandler) {
         this.jdbcTemplate = jdbcTemplate;
+        this.imageHandler = imageHandler;
     }
 
 
@@ -122,15 +127,23 @@ public class UserInfoDAOImpl implements UserInfoDAO {
     @Override
     public Object faceLogin(byte[] faceInfo) {
 
-        String sql = "select faceInfo from baseinfo";
+        String sql = "select username, faceInfo from baseinfo";
 
-        List<byte[]> faceInfoList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(byte[].class));
+        List<UserInfo> userInfoList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(UserInfo.class));
 
-        for (byte[] bytes : faceInfoList) {
+        for (UserInfo userInfo: userInfoList) {
+            byte[] info = userInfo.getFaceInfo();
+            if (info != null) {
+                double rate = imageHandler.getFaceSimilarRate(faceInfo, info);
+                log.info("相似度：{}", rate);
+                if (rate >= 0.80) {
+                    return userInfo.getUsername();
+                }
+            }
 
         }
 
-        return null;
+        return ReturnInfo.FACE_INFO_NOT_FOUND;
     }
 
 }

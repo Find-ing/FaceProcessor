@@ -46,7 +46,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.2.6</version>
+            <version>1.2.8</version>
         </dependency>
 
         <dependency>
@@ -58,6 +58,14 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.arcsoft.face</groupId>
+            <artifactId>com.arcsoft.face</artifactId>
+            <version>3.0.0.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/arcsoft-sdk-face-3.0.0.0.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -89,6 +97,15 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <executable>true</executable>-->
+<!--                    <includeSystemScope>true</includeSystemScope>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
